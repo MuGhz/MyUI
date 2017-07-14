@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         etUsername = (EditText) findViewById(R.id.username);
-        
+
         setTitle("Halaman Login");
 
         //set action if login button clicked
