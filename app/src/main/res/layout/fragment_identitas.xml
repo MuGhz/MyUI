@@ -35,7 +35,7 @@
             android:id="@+id/jurusan_identitas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ilmu Komputer"
+            android:text="S1 Paralel"
             android:textAlignment="center"
             android:layout_marginTop="5dp"
             android:layout_below="@+id/NPM_identitas"
