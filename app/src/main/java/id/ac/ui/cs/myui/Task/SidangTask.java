@@ -23,12 +23,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by maulana.wisnu on 14/07/17.
  */
 
-public class SidangTask extends AsyncTask<Object,Object,Object> {
+public class SidangTask extends AsyncTask<Object,Object,List<SidangModel>> {
 
     private Context context;
 
     @Override
-    protected Object doInBackground(Object... objects) {
+    protected List<SidangModel> doInBackground(Object... objects) {
         Retrofit client = new Retrofit.Builder()
                 .baseUrl("https://api.cs.ui.ac.id/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -65,7 +65,7 @@ public class SidangTask extends AsyncTask<Object,Object,Object> {
             e.printStackTrace();
         }
 
-       return "";
+       return posts.body();
 
     }
 }
