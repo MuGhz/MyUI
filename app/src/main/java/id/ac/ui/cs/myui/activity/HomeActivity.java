@@ -1,14 +1,17 @@
 package id.ac.ui.cs.myui.activity;
 
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import id.ac.ui.cs.myui.R;
+import id.ac.ui.cs.myui.fragment.IdentitasFragment;
 import id.ac.ui.cs.myui.fragment.JadwalFragment;
 import id.ac.ui.cs.myui.fragment.MainFragment;
 
@@ -19,7 +22,14 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         final MainFragment mainFragment = new MainFragment();
+
+        String username = getIntent().getStringExtra("username");
+        Bundle bundle = new Bundle();
+        bundle.putString("name", username);
         //By default, use MainFragment
+
+        mainFragment.setArguments(bundle);
+        Log.d("BUNDLE set", username);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, mainFragment).commit();
 
@@ -44,8 +54,25 @@ public class HomeActivity extends AppCompatActivity {
                     transaction.addToBackStack(null);
                     transaction.commit();
                     setTitle("Jadwal Kuliah");
+                } else if(tabId == R.id.tab_identitas) {
+                    //Use JadwalFragment
+                    IdentitasFragment identitasFragment = new IdentitasFragment();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, identitasFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                    setTitle("Identitas");
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        if (this.equals(HomeActivity.this)) {
+            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+            finish();
+        }
     }
 }
