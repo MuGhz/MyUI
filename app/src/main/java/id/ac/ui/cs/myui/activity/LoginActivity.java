@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.content.Intent;
 
 import id.ac.ui.cs.myui.R;
+import id.ac.ui.cs.myui.Task.SidangTask;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,5 +31,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        new SidangTask().execute();
     }
 }
