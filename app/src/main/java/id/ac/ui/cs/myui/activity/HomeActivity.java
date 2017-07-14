@@ -28,6 +28,17 @@ public class HomeActivity extends AppCompatActivity {
         super.onBackPressed();  // optional depending on your needs
     }
 
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id==android.R.id.home) {
+            Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivityForResult(myIntent, 0);
+
+        }
+        return  true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,16 +91,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
 
-            /*public boolean onOptionsItemSelected(MenuItem item){
-                int id = item.getItemId();
 
-                if (id==android.R.id.home) {
-                    Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivityForResult(myIntent, 0);
-
-                }
-                return  true;
-            }*/
         });
     }
 }
