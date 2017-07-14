@@ -24,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
 
         etUsername = (EditText) findViewById(R.id.username);
 
+
+        //set title bar
         setTitle("Halaman Login");
 
         //set action if login button clicked
