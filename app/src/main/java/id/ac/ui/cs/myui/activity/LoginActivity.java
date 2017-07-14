@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.EditText;
 
 import id.ac.ui.cs.myui.R;
 
@@ -22,11 +23,14 @@ public class LoginActivity extends AppCompatActivity {
         //set title bar
         setTitle("Halaman Login");
 
+        final EditText etUsername = (EditText) findViewById(R.id.username);
+
         //set action if login button clicked
         Button loginButton = (Button) findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent i = new  Intent(LoginActivity.this, HomeActivity.class);
+                i.putExtra("username", etUsername.getText().toString());
                 startActivity(i);
             }
         });

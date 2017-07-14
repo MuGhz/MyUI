@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import id.ac.ui.cs.myui.R;
@@ -41,6 +42,9 @@ public class MainFragment extends Fragment {
                 getActivity().startActivity(i);
             }
         });
+
+        TextView tvUsername = (TextView) getView().findViewById(R.id.name);
+        tvUsername.setText(getActivity().getIntent().getStringExtra("username"));
 
     }
 }
