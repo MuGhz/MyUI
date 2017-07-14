@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import id.ac.ui.cs.myui.R;
@@ -27,7 +28,14 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        TextView text = (TextView) view.findViewById(R.id.name);
+        text.setText(getActivity().getIntent().getStringExtra("user"));
+
+        return view;
+
     }
 
     @Override
