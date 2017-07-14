@@ -7,7 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import id.ac.ui.cs.myui.R;
 import id.ac.ui.cs.myui.activity.DetailActivity;
@@ -41,6 +44,8 @@ public class MainFragment extends Fragment {
                 getActivity().startActivity(i);
             }
         });
-
+        String nama = getActivity().getIntent().getStringExtra("nama");
+        TextView tv = (TextView) getView().findViewById(R.id.name);
+        tv.setText("Welcome ," + nama+" !");
     }
 }

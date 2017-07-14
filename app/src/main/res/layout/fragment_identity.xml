@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.ac.ui.cs.myui.fragment.JadwalFragment">
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/identitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IDENTITAS"
+        />
+    <TextView
+        android:id="@+id/namaIdentitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama : "
+        />
+    <TextView
+        android:id="@+id/npm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NPM : 1406XXXXXXX"
+        />
+    <TextView
+        android:id="@+id/jurusan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ilmu Komputer"
+        />
+        <TextView
+            android:id="@+id/program"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S1"
+            />
+    </android.support.v7.widget.LinearLayoutCompat>
+</RelativeLayout>
