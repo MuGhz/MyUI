@@ -13,6 +13,7 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import id.ac.ui.cs.myui.R;
+import id.ac.ui.cs.myui.fragment.IdentitasFragment;
 import id.ac.ui.cs.myui.fragment.JadwalFragment;
 import id.ac.ui.cs.myui.fragment.MainFragment;
 import id.ac.ui.cs.myui.fragment.ProfileFragment;
@@ -26,7 +27,14 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         final MainFragment mainFragment = new MainFragment();
+
+        String username = getIntent().getStringExtra("username");
+        Bundle bundle = new Bundle();
+        bundle.putString("name", username);
         //By default, use MainFragment
+
+        mainFragment.setArguments(bundle);
+        Log.d("BUNDLE set", username);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, mainFragment).commit();
         username = getIntent().getStringExtra("username");

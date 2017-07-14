@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="program_item">
+        <item>S1 Reguler</item>
+        <item>S1 Paralel</item>
+        <item>D3 Vokasi</item>
+        <item>S1 Ekstensi</item>
+    </string-array>
+</resources>

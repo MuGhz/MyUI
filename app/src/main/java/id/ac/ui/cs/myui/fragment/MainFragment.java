@@ -21,6 +21,9 @@ import id.ac.ui.cs.myui.activity.DetailActivity;
 
 public class MainFragment extends Fragment {
 
+    private TextView tvWel;
+    private String username;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
