@@ -22,7 +22,11 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = new  Intent(HomeActivity.this, LoginActivity.class);
         startActivity(i);
     }
-
+    @Override
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
                 .add(R.id.fragment_container, mainFragment).commit();
 
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //what to do if bottom bar or tab is tapped
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
