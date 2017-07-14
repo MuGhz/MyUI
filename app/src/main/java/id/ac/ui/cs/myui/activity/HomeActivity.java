@@ -1,14 +1,19 @@
 package id.ac.ui.cs.myui.activity;
 
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import org.w3c.dom.Text;
+
 import id.ac.ui.cs.myui.R;
+import id.ac.ui.cs.myui.fragment.IdentitasFragment;
 import id.ac.ui.cs.myui.fragment.JadwalFragment;
 import id.ac.ui.cs.myui.fragment.MainFragment;
 
@@ -18,8 +23,16 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //get the param from prev intent
+        String username = getIntent().getStringExtra("username");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("username", username);
+
         final MainFragment mainFragment = new MainFragment();
         //By default, use MainFragment
+        mainFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, mainFragment).commit();
 
@@ -36,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                     transaction.addToBackStack(null);
                     transaction.commit();
                     setTitle("MyUI");
-                }else if(tabId == R.id.tab_jadwal) {
+                } else if(tabId == R.id.tab_jadwal) {
                     //Use JadwalFragment
                     JadwalFragment jadwalFragment = new JadwalFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -44,6 +57,14 @@ public class HomeActivity extends AppCompatActivity {
                     transaction.addToBackStack(null);
                     transaction.commit();
                     setTitle("Jadwal Kuliah");
+                } else if(tabId == R.id.tab_identitas) {
+                    //Use IdentitasFragment
+                    IdentitasFragment identitasFragment = new IdentitasFragment();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, identitasFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                    setTitle("Identitas");
                 }
             }
         });

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MyUI</string>
+    <string-array name="program_options">
+        <item> S1 Reguler </item>
+        <item> S1 Parallel </item>
+        <item> S1 Ekstensi </item>
+        <item> S2 Reguler </item>
+        <item> S2 Parallel </item>
+        <item> S3  </item>
+    </string-array>
 </resources>
