@@ -15,4 +15,11 @@ unitTests:
     paths:
       - app/build/reports/jacoco/
 
+build:
+  stage: build
+  script:
+    - ./gradlew assembleDebug
+  artifacts:
+    paths:
+    - app/build/outputs/
 
