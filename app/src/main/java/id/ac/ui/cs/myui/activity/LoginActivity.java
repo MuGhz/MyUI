@@ -25,8 +25,7 @@ import retrofit2.http.Field;
 public class LoginActivity extends AppCompatActivity {
 
     private final String clientId = "2bfJDNTlHhR9TJO6kQ5OsINqeMpNqFrudWOC8Vg9";
-    private final String clientSecret = "hUgmknnh2hFiowr8KYMyJUSt5JR5qjzJZydCATRYTPpCyBnub4FmBO15OwFqC9qEILcKmfq2uVp305XBJiapMt23ZpUBJnBlfsoXJZx1A8XbPaS5DU8Z4pYTe0cQo1ZN";
-    private final String redirectUri = "http://localhost/";
+    private final String redirectUri = "akuncs://localhost/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             if (code != null) {
                 // get access token
                 try{
-                    ServiceGenerator serviceGenerator = new ServiceGenerator(getApplicationContext(),clientId,clientSecret,code);
+                    ServiceGenerator serviceGenerator = new ServiceGenerator(getApplicationContext(),code);
                     serviceGenerator.execute();
                 }
                 catch (Exception e){

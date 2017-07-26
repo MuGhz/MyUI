@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="localhost"
-                    android:scheme="http"
+                    android:scheme="akuncs"
                     android:path="/"/>
             </intent-filter>
         </activity>

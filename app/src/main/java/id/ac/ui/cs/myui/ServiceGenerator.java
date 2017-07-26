@@ -29,18 +29,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator extends AsyncTask<Object, Object, AccessToken> {
 
     private Context context;
-    private String clientId;
-    private String clientSecret;
     private String code;
 
-    public ServiceGenerator(Context context, String clientId, String clientSecret, String code){
+    public ServiceGenerator(Context context, String code){
         this.context = context;
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
         this.code = code;
     }
 
     public static final String API_BASE_URL = "https://akun.cs.ui.ac.id/";
+    public static final String BACKEND_BASE_URL = "http://10.0.2.2/";
 
     @Override
     protected AccessToken doInBackground(Object... objects) {
@@ -48,12 +45,12 @@ public class ServiceGenerator extends AsyncTask<Object, Object, AccessToken> {
         AccessToken data = null;
         Retrofit.Builder builder =
                 new Retrofit.Builder()
-                        .baseUrl(API_BASE_URL)
+                        .baseUrl(BACKEND_BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create());
 
         Retrofit retrofit = builder.build();
         LoginService loginService = retrofit.create(LoginService.class);
-        Call<AccessToken> call = loginService.getAccessToken(code, "authorization_code", clientId, clientSecret, "http://localhost/");
+        Call<AccessToken> call = loginService.getAccessToken(code);
         Response<AccessToken> body = null;
         Log.i("CALL",call.request().url().toString());
         try{
@@ -62,23 +59,20 @@ public class ServiceGenerator extends AsyncTask<Object, Object, AccessToken> {
         catch (Exception e){
 
         }
-        if (!TextUtils.isEmpty(clientId)
-                && !TextUtils.isEmpty(clientSecret)) {
-            try{
-                body = call.execute();
-                String isSuccess = Integer.toString(body.code());
-                Log.i("SUCCESS", isSuccess);
-
-                JSONObject jsonResult = new JSONObject(new Gson().toJson(body.body()));
-                //JSONObject access_token = jsonResult.getJSONObject("access_token");
-                Log.i("TOKEN", jsonResult.toString());
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-            catch (JSONException e){
-                e.printStackTrace();
-            }
+        try{
+            body = call.execute();
+            String isSuccess = Integer.toString(body.code());
+            Log.i("SUCCESS", isSuccess);
+            Log.i("REASON", body.message());
+            JSONObject jsonResult = new JSONObject(new Gson().toJson(body.body()));
+            //JSONObject access_token = jsonResult.getJSONObject("access_token");
+            Log.i("TOKEN", jsonResult.toString());
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        catch (JSONException e){
+            e.printStackTrace();
         }
 
         return data;
@@ -87,8 +81,10 @@ public class ServiceGenerator extends AsyncTask<Object, Object, AccessToken> {
 
     @Override
     protected void onPostExecute(AccessToken accessToken) {
-        Intent i = new Intent(context, HomeActivity.class);
-        context.startActivity(i);
+        if(!(accessToken == null)){
+            Intent i = new Intent(context, HomeActivity.class);
+            context.startActivity(i);
+        }
     }
 
 }
