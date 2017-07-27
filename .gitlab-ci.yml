@@ -1,46 +1,18 @@
-image: jerbob92/gitlab-ci-android:latest
+image: hafiyyan94/androidsdk25gitlabci:newSet
+
+before_script:
+  - chmod +x ./gradlew
 
 stages:
   - build
   - test
 
-before_script:
-    - export GRADLE_USER_HOME=`pwd`/.gradle
-    - mkdir -p $GRADLE_USER_HOME
-    - chmod +x ./gradlew
-
-cache:
-  paths:
-     - .gradle/wrapper
-     - .gradle/caches
-
-build:
-  stage: build
-  script:
-      - ./gradlew assembleDebug
-      - ./gradlew assembleDebugAndroidTest
-  artifacts:
-    paths:
-      - app/build/outputs/
-
-test:
+unitTests:
   stage: test
   script:
-      - echo "no" | /sdk/tools/android create avd -f -n test -t android-23 --abi "google_apis/x86" -s WXGA720
-      - echo "no" | /sdk/tools/emulator64-x86 -avd test -wipe-data -noaudio -no-window -gpu off -verbose -qemu -usbdevice tablet -vnc :2 &
-      - /helpers/wait-for-avd-boot.sh
-      - /sdk/platform-tools/adb install -r app/build/outputs/apk/app-debug.apk
-      - /sdk/platform-tools/adb install -r app/build/outputs/apk/app-debug-androidTest-unaligned.apk
-      - /sdk/platform-tools/adb shell pm grant id.ac.ui.cs.myui android.permission.SET_ANIMATION_SCALE
-      - flvrec.py -o test.flv localhost 5902 &
-      - /sdk/platform-tools/adb shell am instrument -w -r -e debug false id.ac.ui.cs.myui | tee test.log
-      - pkill -f flvrec
-      - yamdi -i test.flv -o test_recording.flv
-      - rm test.flv
-      - if grep -q "FAILURES!!!" test.log; then exit 1; fi
+    - ./gradlew testDebugUnitTestCoverage
   artifacts:
     paths:
-      - test_recording.flv
-      - test.log
-    when: on_failure
-    expire_in: 1 week
+      - app/build/reports/jacoco/
+
+

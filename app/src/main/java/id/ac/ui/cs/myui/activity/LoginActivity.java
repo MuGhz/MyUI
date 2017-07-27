@@ -22,6 +22,10 @@ import id.ac.ui.cs.myui.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.http.Field;
 
+/**
+ * This class defining Login page Logic
+ * This class also need some fixing because Login logic isn't actually complete
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private final String clientId = "2bfJDNTlHhR9TJO6kQ5OsINqeMpNqFrudWOC8Vg9";
