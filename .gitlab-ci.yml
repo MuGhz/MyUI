@@ -26,7 +26,7 @@ build:
 test:
   stage: test
   script:
-      - echo "no" | /sdk/tools/android create avd -f -n test -t android-23 --abi "google_apis/x86" -s WXGA720
+      - echo "no" | /sdk/tools/android create avd -f -n test -t android-25 --abi "google_apis/x86" -s WXGA720
       - echo "no" | /sdk/tools/emulator64-x86 -avd test -wipe-data -noaudio -no-window -gpu off -verbose -qemu -usbdevice tablet -vnc :2 &
       - /helpers/wait-for-avd-boot.sh
       - /sdk/platform-tools/adb install -r app/build/outputs/apk/app-debug.apk
