@@ -1,4 +1,4 @@
-image: jerbob92/gitlab-ci-android:sdk-25
+image: hafiyyan94/androidsdk25gitlabci:newTry
 
 stages:
   - build
@@ -26,21 +26,8 @@ build:
 test:
   stage: test
   script:
-      - echo "no" | /sdk/tools/android create avd -f -n test -t android-25 --abi "google_apis/x86" -s WXGA720
-      - echo "no" | /sdk/tools/emulator64-x86 -avd test -wipe-data -noaudio -no-window -gpu off -verbose -qemu -usbdevice tablet -vnc :2 &
+      - echo "no" | sdk/emulator/emulator -avd test2 -wipe-data -noaudio -no-window -gpu off -verbose -no-accel && /helpers/wait-for-avd-boot.sh
       - /helpers/wait-for-avd-boot.sh
       - /sdk/platform-tools/adb install -r app/build/outputs/apk/app-debug.apk
       - /sdk/platform-tools/adb install -r app/build/outputs/apk/app-debug-androidTest-unaligned.apk
-      - /sdk/platform-tools/adb shell pm grant [package-name] android.permission.SET_ANIMATION_SCALE
-      - flvrec.py -o test.flv localhost 5902 &
-      - /sdk/platform-tools/adb shell am instrument -w -r -e debug false [package-name]/[test-class] | tee test.log
-      - pkill -f flvrec
-      - yamdi -i test.flv -o test_recording.flv
-      - rm test.flv
-      - if grep -q "FAILURES!!!" test.log; then exit 1; fi
-  artifacts:
-    paths:
-      - test_recording.flv
-      - test.log
-    when: on_failure
-    expire_in: 1 week
+      - /sdk/platform-tools/adb shell am instrument -w -r -e package id.ac.ui.cs.myui -e debug false id.ac.ui.cs.myui.test/android.support.test.runner.AndroidJUnitRunn er

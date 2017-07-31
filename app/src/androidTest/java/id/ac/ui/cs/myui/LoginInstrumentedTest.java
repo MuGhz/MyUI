@@ -42,10 +42,4 @@ public class LoginInstrumentedTest {
         // Type text and then press the button.
         onView(withId(R.id.login)).check(matches(withText(mButtonTextExpected)));
     }
-
-    @Test
-    public void clickLogin_showHomeActivity(){
-        onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.bottomBar)).check(matches(isDisplayed()));
-    }
 }
