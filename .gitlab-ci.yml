@@ -27,7 +27,7 @@ build:
 test:
   stage: test
   script:
-      - $ANDROID_HOME/tools/bin/avdmanager create avd -n test2 -k "system-images;android-24;default;armeabi-v7a”
+      - $ANDROID_HOME/tools/bin/avdmanager create avd -n test2 -k "system-images;android-24;default;armeabi-v7a"
       - echo "no" | $ANDROID_HOME/emulator/emulator -avd test2  -wipe-data -noaudio -no-window -gpu off -verbose -no-accel && /helpers/wait-for-avd-boot.sh
       - /sdk/platform-tools/adb install -r app/build/outputs/apk/app-debug.apk
       - /sdk/platform-tools/adb install -r app/build/outputs/apk/app-debug-androidTest-unaligned.apk
